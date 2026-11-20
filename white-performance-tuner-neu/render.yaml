@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: white-performance-tuner
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ADMIN_USER
+        value: admin
+      - key: ADMIN_PASS
+        generateValue: true
+      - key: MEISTER_USER
+        value: meister
+      - key: MEISTER_PASS
+        generateValue: true
+      - key: SESSION_SECRET
+        generateValue: true
