@@ -41,7 +41,7 @@ const DEFAULT_STATE = {
       canDiscount: true,
       maxDiscount: 50,
       passwordHash: hashPassword(process.env.ADMIN_PASS || "admin123")
-    }
+    },
     {
       id: "u-azubi",
       username: "azubi",
