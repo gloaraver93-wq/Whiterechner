@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WHITE PERFORMANCE SHOP — Tuningrechner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/styles.css" />
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            shopbg: '#141518',
+            tilebg: '#1e1f24',
+            tilehover: '#26282f',
+            tileborder: '#2d3039',
+            accentred: '#ef4444'
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-shopbg text-zinc-100 min-h-screen antialiased selection:bg-red-500/30 selection:text-white">
+  <!-- Top Bar im White Performance Shop Stil -->
+  <header class="sticky top-0 z-30 bg-[#141518]/95 backdrop-blur border-b border-[#26282f]">
+    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <h1 class="text-2xl sm:text-3xl font-black tracking-tight uppercase text-white">
+          WHITE PERFORMANCE SHOP
+        </h1>
+        <span id="role-badge" class="hidden sm:inline-flex items-center px-2.5 py-1 rounded text-xs font-semibold bg-[#1e1f24] border border-[#2d3039] text-zinc-300">
+          Mitarbeiter-Modus
+        </span>
+      </div>
+
+      <div class="flex items-center gap-2.5 flex-wrap">
+        <button id="btn-toggle-filter" onclick="toggleFilterBar()" class="px-4 py-2 rounded bg-[#1e1f24] hover:bg-[#282a31] border border-[#2d3039] text-xs sm:text-sm font-bold tracking-wider uppercase text-zinc-100 transition">
+          FILTER
+        </button>
+        <button id="btn-open-admin" onclick="openAdminModal()" class="px-4 py-2 rounded bg-[#1e1f24] hover:bg-[#282a31] border border-[#2d3039] text-xs sm:text-sm font-bold tracking-wider uppercase text-zinc-100 transition">
+          ADMIN
+        </button>
+        <button id="btn-reset" onclick="resetSelection()" class="px-4 py-2 rounded bg-[#1e1f24] hover:bg-[#282a31] border border-[#2d3039] text-xs sm:text-sm font-bold tracking-wider uppercase text-zinc-100 transition">
+          BEENDEN
+        </button>
+      </div>
+    </div>
+
+    <!-- Ausklappbare Filterleiste -->
+    <div id="filter-bar" class="hidden border-t border-[#26282f] bg-[#18191e]">
+      <div class="max-w-[1600px] mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+        <div id="category-pills" class="flex flex-wrap items-center gap-2"></div>
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <input id="search-input" type="text" oninput="renderCatalog()" placeholder="Teil oder Stufe suchen..."
+            class="w-full sm:w-64 px-3 py-1.5 rounded bg-[#141518] border border-[#2d3039] text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-zinc-400" />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-[1600px] mx-auto px-4 sm:px-6 py-6 grid grid-cols-1 xl:grid-cols-12 gap-6">
+    <!-- Linke Seite: Shop-Kacheln & Kategorien -->
+    <section class="xl:col-span-8 space-y-8">
+      <!-- Schnellwahl Leistungsteile (Motor, Getriebe, Fahrwerk, Bremsen, Turbo) -->
+      <div class="bg-[#191a1f] border border-[#26282f] rounded-lg p-4 sm:p-5">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <div>
+            <h2 class="text-base sm:text-lg font-extrabold tracking-wide uppercase text-white">Leistungsteile</h2>
+            <p class="text-xs text-zinc-400">Motorstufen (1–4), Getriebestufen (1–3), Fahrwerksstufen (1–3), Bremsenstufen (1–3) & Turbolader</p>
+          </div>
+          <div id="perf-tab-buttons" class="flex flex-wrap gap-1.5">
+            <button data-perf="alle" onclick="setPerfTab('alle')" class="perf-tab px-3 py-1.5 rounded text-xs font-bold uppercase bg-white text-zinc-900">Alle</button>
+            <button data-perf="Motorstufen" onclick="setPerfTab('Motorstufen')" class="perf-tab px-3 py-1.5 rounded text-xs font-bold uppercase bg-[#1e1f24] text-zinc-300 border border-[#2d3039]">Motorstufen</button>
+            <button data-perf="Getriebestufen" onclick="setPerfTab('Getriebestufen')" class="perf-tab px-3 py-1.5 rounded text-xs font-bold uppercase bg-[#1e1f24] text-zinc-300 border border-[#2d3039]">Getriebestufen</button>
+            <button data-perf="Fahrwerksstufen" onclick="setPerfTab('Fahrwerksstufen')" class="perf-tab px-3 py-1.5 rounded text-xs font-bold uppercase bg-[#1e1f24] text-zinc-300 border border-[#2d3039]">Fahrwerksstufen</button>
+            <button data-perf="Bremsenstufen" onclick="setPerfTab('Bremsenstufen')" class="perf-tab px-3 py-1.5 rounded text-xs font-bold uppercase bg-[#1e1f24] text-zinc-300 border border-[#2d3039]">Bremsenstufen</button>
+            <button data-perf="Turbolader" onclick="setPerfTab('Turbolader')" class="perf-tab px-3 py-1.5 rounded text-xs font-bold uppercase bg-[#1e1f24] text-zinc-300 border border-[#2d3039]">Turbolader</button>
+          </div>
+        </div>
+        <div id="perf-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5"></div>
+      </div>
+
+      <!-- Weitere Kategorien (Tuning Verkauf, Wartung Verkauf, Zusatztuning Verkauf, Sonstiges Verkauf) -->
+      <div id="other-categories-container" class="space-y-8"></div>
+    </section>
+
+    <!-- Rechte Seite: Kundenrechnung & Auswahlübersicht (ohne Einzelpreise) -->
+    <aside class="xl:col-span-4">
+      <div class="sticky top-24 bg-[#191a1f] border border-[#26282f] rounded-lg p-5 space-y-5">
+        <div class="flex items-center justify-between border-b border-[#26282f] pb-3.5">
+          <div>
+            <h2 class="text-base font-extrabold uppercase tracking-wider text-white">Kundenrechnung & Auswahl</h2>
+            <p class="text-xs text-zinc-400">Einzelpreise sind geschützt — nur Gesamtkalkulation sichtbar</p>
+          </div>
+          <span id="selected-count-badge" class="px-2.5 py-1 rounded bg-[#1e1f24] border border-[#2d3039] text-xs font-bold text-white">
+            0 Teile
+          </span>
+        </div>
+
+        <div id="selected-items-list" class="max-h-72 overflow-y-auto space-y-2 pr-1">
+          <div class="text-sm text-zinc-500 py-8 text-center border border-dashed border-[#26282f] rounded">
+            Noch keine Tuningteile oder Stufen ausgewählt.
+          </div>
+        </div>
+
+        <!-- Rabattsteuerung (nur für berechtigte Rollen veränderbar) -->
+        <div class="bg-[#141518] border border-[#26282f] rounded-lg p-3.5 space-y-2">
+          <div class="flex items-center justify-between">
+            <label for="discount-input" class="text-xs font-bold uppercase tracking-wider text-zinc-300">
+              Rabatt (%)
+            </label>
+            <span id="discount-permission-hint" class="text-[11px] text-zinc-500">
+              Keine Rabattberechtigung
+            </span>
+          </div>
+          <div class="flex items-center gap-2">
+            <input id="discount-input" type="number" min="0" max="100" step="1" value="0" disabled
+              oninput="recalculateQuote()"
+              class="w-24 px-3 py-1.5 rounded bg-[#1e1f24] border border-[#2d3039] text-sm font-bold text-white disabled:opacity-50 focus:outline-none" />
+            <span id="discount-cap-label" class="text-xs text-zinc-400">Max: 0%</span>
+          </div>
+        </div>
+
+        <!-- Summenblock -->
+        <div class="border-t border-[#26282f] pt-4 space-y-2.5 text-sm">
+          <div class="flex items-center justify-between text-zinc-400">
+            <span>Zwischensumme</span>
+            <span id="summary-subtotal" class="font-bold text-zinc-200">$0</span>
+          </div>
+          <div class="flex items-center justify-between text-zinc-400">
+            <span>Rabatt (<span id="summary-discount-pct">0</span>%)</span>
+            <span id="summary-discount-amt" class="font-bold text-emerald-400">-$0</span>
+          </div>
+          <div class="flex items-center justify-between pt-2.5 border-t border-[#26282f] text-lg font-black text-white">
+            <span>GESAMTPREIS</span>
+            <span id="summary-total" class="text-2xl text-red-400">$0</span>
+          </div>
+        </div>
+
+        <button onclick="copyCustomerReceipt()" class="w-full py-2.5 px-4 rounded bg-white hover:bg-zinc-200 text-zinc-950 font-extrabold text-xs uppercase tracking-wider transition">
+          Kundenbeleg kopieren (ohne Einzelpreise)
+        </button>
+        <p id="copy-feedback" class="text-xs text-center text-emerald-400 hidden">Beleg in die Zwischenablage kopiert.</p>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Admin-Login & Adminbereich Modal -->
+  <div id="admin-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-[#18191e] border border-[#2d3039] rounded-xl w-full max-w-5xl max-h-[90vh] overflow-y-auto shadow-2xl">
+      <div class="sticky top-0 z-10 bg-[#18191e] border-b border-[#2d3039] px-6 py-4 flex items-center justify-between">
+        <div>
+          <h3 class="text-lg font-black uppercase tracking-wide text-white">Adminbereich & Preisverwaltung</h3>
+          <p class="text-xs text-zinc-400">Verkaufspreise, Einkaufspreise, Leistungsstufen, Rabatte & Benutzerrechte</p>
+        </div>
+        <button onclick="closeAdminModal()" class="px-3 py-1.5 rounded bg-[#1e1f24] hover:bg-[#282a31] border border-[#2d3039] text-xs font-bold uppercase text-zinc-200">
+          Schließen
+        </button>
+      </div>
+
+      <!-- Login Ansicht -->
+      <div id="admin-login-panel" class="p-6 max-w-md mx-auto space-y-4">
+        <p class="text-sm text-zinc-300">Bitte mit einem Administrator-Konto anmelden, um interne Preise, Stufen und Berechtigungen zu verwalten.</p>
+        <div class="space-y-3">
+          <div>
+            <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Benutzername</label>
+            <input id="login-username" type="text" value="admin" class="w-full px-3 py-2 rounded bg-[#141518] border border-[#2d3039] text-sm text-white" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Passwort</label>
+            <input id="login-password" type="password" placeholder="Passwort eingeben" class="w-full px-3 py-2 rounded bg-[#141518] border border-[#2d3039] text-sm text-white" />
+          </div>
+          <p id="login-error" class="text-xs text-red-400 hidden"></p>
+          <button onclick="loginUser()" class="w-full py-2.5 rounded bg-red-500 hover:bg-red-600 text-white font-bold text-xs uppercase tracking-wider">
+            Anmelden
+          </button>
+        </div>
+        <div class="text-xs text-zinc-500 border-t border-[#26282f] pt-3 space-y-1">
+          <div>Mitarbeiter: <span class="text-zinc-300">Mitarbeiter</span> / <span class="text-zinc-300">Mitarbeiter123</span></div>
+        </div>
+      </div>
+
+      <!-- Geschützter Admin-Inhalt -->
+      <div id="admin-dashboard-panel" class="hidden p-6 space-y-8">
+        <div class="flex flex-wrap items-center justify-between gap-3 bg-[#141518] border border-[#26282f] rounded-lg p-4">
+          <div class="flex flex-wrap gap-6 text-xs">
+            <div><span class="text-zinc-400 block">Artikel gesamt</span><strong id="kpi-items" class="text-base text-white">0</strong></div>
+            <div><span class="text-zinc-400 block">Katalog VK-Summe</span><strong id="kpi-vk" class="text-base text-red-400">$0</strong></div>
+            <div><span class="text-zinc-400 block">Katalog EK-Summe</span><strong id="kpi-ek" class="text-base text-zinc-200">$0</strong></div>
+            <div><span class="text-zinc-400 block">Kalk. Marge</span><strong id="kpi-margin" class="text-base text-emerald-400">$0</strong></div>
+          </div>
+          <button onclick="logoutUser()" class="px-3 py-1.5 rounded bg-[#1e1f24] hover:bg-[#282a31] border border-[#2d3039] text-xs font-bold uppercase text-zinc-300">
+            Abmelden
+          </button>
+        </div>
+
+        <!-- Rabatt-Steuerung & Benutzerrechte -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="bg-[#141518] border border-[#26282f] rounded-lg p-4 space-y-4">
+            <h4 class="text-sm font-extrabold uppercase tracking-wider text-white">Globale Rabattsteuerung</h4>
+            <label class="flex items-center gap-2.5 text-sm text-zinc-200">
+              <input id="cfg-discount-enabled" type="checkbox" class="w-4 h-4 accent-red-500" />
+              Rabattfunktion im Rechner aktivieren
+            </label>
+            <div>
+              <label class="block text-xs font-bold uppercase text-zinc-400 mb-1">Maximaler Rabatt (%)</label>
+              <input id="cfg-discount-max" type="number" min="0" max="100" class="w-32 px-3 py-1.5 rounded bg-[#1e1f24] border border-[#2d3039] text-sm text-white" />
+            </div>
+            <button onclick="saveDiscountConfig()" class="px-4 py-2 rounded bg-white text-zinc-950 font-bold text-xs uppercase">
+              Rabatt-Einstellungen speichern
+            </button>
+          </div>
+
+          <div class="bg-[#141518] border border-[#26282f] rounded-lg p-4 space-y-3">
+            <h4 class="text-sm font-extrabold uppercase tracking-wider text-white">Benutzer & Rabattberechtigungen</h4>
+            <div id="admin-users-list" class="space-y-2 text-xs"></div>
+          </div>
+        </div>
+
+        <!-- Neues Tuningteil erstellen -->
+        <div class="bg-[#141518] border border-[#26282f] rounded-lg p-4 space-y-3">
+          <h4 class="text-sm font-extrabold uppercase tracking-wider text-white">Neues Tuningteil / Leistungsstufe anlegen</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+            <input id="new-item-name" type="text" placeholder="Bezeichnung" class="px-3 py-2 rounded bg-[#1e1f24] border border-[#2d3039] text-xs text-white" />
+            <input id="new-item-group" type="text" value="Leistungsteile" placeholder="Kategorie" class="px-3 py-2 rounded bg-[#1e1f24] border border-[#2d3039] text-xs text-white" />
+            <input id="new-item-sub" type="text" value="Motorstufen" placeholder="Unterkategorie" class="px-3 py-2 rounded bg-[#1e1f24] border border-[#2d3039] text-xs text-white" />
+            <input id="new-item-sell" type="number" placeholder="Verkaufspreis ($)" class="px-3 py-2 rounded bg-[#1e1f24] border border-[#2d3039] text-xs text-white" />
+            <input id="new-item-buy" type="number" placeholder="Einkaufspreis ($)" class="px-3 py-2 rounded bg-[#1e1f24] border border-[#2d3039] text-xs text-white" />
+          </div>
+          <button onclick="createAdminItem()" class="px-4 py-2 rounded bg-red-500 hover:bg-red-600 text-white font-bold text-xs uppercase">
+            Teil hinzufügen
+          </button>
+        </div>
+
+        <!-- Alle Teile mit VK, EK & Marge bearbeiten -->
+        <div class="overflow-x-auto bg-[#141518] border border-[#26282f] rounded-lg">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-[#1e1f24] text-zinc-400 uppercase border-b border-[#2d3039]">
+              <tr>
+                <th class="p-3">Bezeichnung</th>
+                <th class="p-3">Kategorie / Stufe</th>
+                <th class="p-3">Verkauf (VK $)</th>
+                <th class="p-3">Einkauf (EK $)</th>
+                <th class="p-3">Marge</th>
+                <th class="p-3">Aktionen</th>
+              </tr>
+            </thead>
+            <tbody id="admin-items-tbody" class="divide-y divide-[#26282f]"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
