@@ -39,26 +39,17 @@ const DEFAULT_STATE = {
       role: "admin",
       label: "Werkstattleitung (Admin)",
       canDiscount: true,
-      maxDiscount: 25,
+      maxDiscount: 50,
       passwordHash: hashPassword(process.env.ADMIN_PASS || "admin123")
-    },
-    {
-      id: "u-meister",
-      username: process.env.MEISTER_USER || "meister",
-      role: "meister",
-      label: "Werkstattmeister",
-      canDiscount: true,
-      maxDiscount: 15,
-      passwordHash: hashPassword(process.env.MEISTER_PASS || "meister123")
-    },
+    }
     {
       id: "u-azubi",
       username: "azubi",
       role: "staff",
       label: "Mechaniker / Mitarbeiter",
-      canDiscount: false,
-      maxDiscount: 0,
-      passwordHash: hashPassword("azubi123")
+      canDiscount: true,
+      maxDiscount: 20,
+      passwordHash: hashPassword("Mitarbeiter123")
     }
   ],
   items: [
