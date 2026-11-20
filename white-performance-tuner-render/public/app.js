@@ -241,7 +241,7 @@ async function recalculateQuote() {
 }
 
 function copyCustomerReceipt() {
-  const lines = ["WHITE PERFORMANCE SHOP — KUNDENRECHNUNG"];
+  const lines = ["WHITE PERFORMANCE — KUNDENRECHNUNG"];
   document.querySelectorAll("#selected-items-list > div").forEach((row) => {
     const title = row.querySelector(".font-bold")?.textContent?.trim();
     const qty = row.querySelector("span.w-6")?.textContent?.trim();
