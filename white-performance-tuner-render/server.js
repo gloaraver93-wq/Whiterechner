@@ -29,18 +29,18 @@ function verifyPassword(password, expectedHash) {
 const DEFAULT_STATE = {
   discountConfig: {
     enabled: true,
-    maxDiscountPercent: 25,
+    maxDiscountPercent: 50,
     defaultDiscountPercent: 0
   },
   users: [
     {
-      id: "u-admin",
-      username: process.env.ADMIN_USER || "admin",
+      id: "u-Inhaber",
+      username: process.env.ADMIN_USER || "Inhaber",
       role: "admin",
       label: "Werkstattleitung (Admin)",
       canDiscount: true,
       maxDiscount: 50,
-      passwordHash: hashPassword(process.env.ADMIN_PASS || "admin123")
+      passwordHash: hashPassword(process.env.ADMIN_PASS || "dasgehtdichnenscheissdreckan")
     },
     {
       id: "u-Mitarbeiter",
