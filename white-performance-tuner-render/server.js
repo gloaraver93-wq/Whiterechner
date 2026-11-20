@@ -43,8 +43,8 @@ const DEFAULT_STATE = {
       passwordHash: hashPassword(process.env.ADMIN_PASS || "admin123")
     },
     {
-      id: "u-azubi",
-      username: "azubi",
+      id: "u-Mitarbeiter",
+      username: "Mitarbeiter",
       role: "staff",
       label: "Mechaniker / Mitarbeiter",
       canDiscount: true,
