@@ -1,0 +1,17 @@
+{
+  "name": "tuningrechner",
+  "version": "1.0.0",
+  "description": "Tuningrechner mit Adminbereich für eine FiveM-Tuningwerkstatt",
+  "private": true,
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch server.js",
+    "images": "node scripts/generate-images.js",
+    "reset-admin": "node --disable-warning=ExperimentalWarning scripts/reset-admin.js",
+    "test": "node --disable-warning=ExperimentalWarning scripts/test.js"
+  }
+}

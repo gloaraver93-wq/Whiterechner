@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1c202a"/><stop offset="1" stop-color="#090a0e"/></linearGradient>
+  <radialGradient id="glow" cx=".5" cy=".46" r=".55"><stop offset="0" stop-color="#ff2e63" stop-opacity=".42"/><stop offset="1" stop-color="#ff2e63" stop-opacity="0"/></radialGradient>
+  <pattern id="st" width="30" height="30" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="10" height="30" fill="#ffffff" fill-opacity=".035"/></pattern>
+</defs>
+<rect width="640" height="400" fill="url(#bg)"/>
+<rect width="640" height="400" fill="url(#st)"/>
+<rect width="640" height="400" fill="url(#glow)"/>
+<rect x="0" y="392" width="640" height="8" fill="#ff2e63"/>
+<g transform="translate(320 196) scale(1.18)"><g fill="none" stroke="#eef1f7" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" >
+      <circle r="68"/><circle r="26"/><circle r="8" fill="#eef1f7" stroke="none"/><circle cx="42.0" cy="0.0" r="5" stroke-width="3"/><circle cx="29.7" cy="29.7" r="5" stroke-width="3"/><circle cx="0.0" cy="42.0" r="5" stroke-width="3"/><circle cx="-29.7" cy="29.7" r="5" stroke-width="3"/><circle cx="-42.0" cy="0.0" r="5" stroke-width="3"/><circle cx="-29.7" cy="-29.7" r="5" stroke-width="3"/><circle cx="-0.0" cy="-42.0" r="5" stroke-width="3"/><circle cx="29.7" cy="-29.7" r="5" stroke-width="3"/>
+      <path d="M26 -66 A70 70 0 0 1 68 -22 L46 -12 A48 48 0 0 0 20 -43Z" fill="#ff2e63" stroke="#ff2e63"/></g></g>
+<rect x="30" y="30" width="6" height="26" rx="3" fill="#ff2e63"/>
+  <text x="46" y="51" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" letter-spacing="4" fill="#9aa3b5">BREMSEN</text><text x="34" y="372" font-family="Arial,Helvetica,sans-serif" font-size="38" font-weight="800" letter-spacing="2" fill="#ffffff">STUFE 2</text><circle cx="558" cy="360" r="8" fill="#ff2e63" stroke="#ff2e63" stroke-width="2.5"/><circle cx="584" cy="360" r="8" fill="#ff2e63" stroke="#ff2e63" stroke-width="2.5"/><circle cx="610" cy="360" r="8" fill="none" stroke="#ff2e63" stroke-width="2.5"/>
+</svg>

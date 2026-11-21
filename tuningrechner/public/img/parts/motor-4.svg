@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1c202a"/><stop offset="1" stop-color="#090a0e"/></linearGradient>
+  <radialGradient id="glow" cx=".5" cy=".46" r=".55"><stop offset="0" stop-color="#ff4a1c" stop-opacity=".42"/><stop offset="1" stop-color="#ff4a1c" stop-opacity="0"/></radialGradient>
+  <pattern id="st" width="30" height="30" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="10" height="30" fill="#ffffff" fill-opacity=".035"/></pattern>
+</defs>
+<rect width="640" height="400" fill="url(#bg)"/>
+<rect width="640" height="400" fill="url(#st)"/>
+<rect width="640" height="400" fill="url(#glow)"/>
+<rect x="0" y="392" width="640" height="8" fill="#ff4a1c"/>
+<g transform="translate(320 196) scale(1.18)"><g fill="none" stroke="#eef1f7" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" >
+    <rect x="-70" y="-10" width="140" height="62" rx="8"/>
+    <rect x="-58" y="-34" width="116" height="24" rx="5" stroke="#ff4a1c"/>
+    <path d="M-42 -34v-16M-14 -34v-16M14 -34v-16M42 -34v-16"/>
+    <path d="M-52 -50h20M-24 -50h20M4 -50h20M32 -50h20" stroke="#ff4a1c"/>
+    <path d="M-35 -10v62M0 -10v62M35 -10v62" stroke-opacity=".35" stroke-width="3"/>
+    <circle cx="-92" cy="24" r="17"/><circle cx="-92" cy="24" r="5" fill="#ff4a1c" stroke="none"/>
+    <path d="M-92 7H-70M-92 41H-70"/>
+    <path d="M70 34h30v-18h20"/></g></g>
+<rect x="30" y="30" width="6" height="26" rx="3" fill="#ff4a1c"/>
+  <text x="46" y="51" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" letter-spacing="4" fill="#9aa3b5">MOTOR</text><text x="34" y="372" font-family="Arial,Helvetica,sans-serif" font-size="38" font-weight="800" letter-spacing="2" fill="#ffffff">STUFE 4</text><circle cx="532" cy="360" r="8" fill="#ff4a1c" stroke="#ff4a1c" stroke-width="2.5"/><circle cx="558" cy="360" r="8" fill="#ff4a1c" stroke="#ff4a1c" stroke-width="2.5"/><circle cx="584" cy="360" r="8" fill="#ff4a1c" stroke="#ff4a1c" stroke-width="2.5"/><circle cx="610" cy="360" r="8" fill="#ff4a1c" stroke="#ff4a1c" stroke-width="2.5"/>
+</svg>

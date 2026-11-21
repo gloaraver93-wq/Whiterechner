@@ -1,0 +1,28 @@
+# Render Blueprint – https://render.com/docs/blueprint-spec
+# Die Datenbank (SQLite) und hochgeladene Bilder liegen auf einer persistenten Disk.
+# Persistente Disks gibt es nur bei bezahlten Instanzen (ab "starter").
+services:
+  - type: web
+    name: tuningrechner
+    runtime: node
+    plan: starter
+    region: frankfurt
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /var/data
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD # beim ersten Deploy im Render-Dashboard eintragen (mind. 8 Zeichen)
+        sync: false
+    disk:
+      name: tuning-data
+      mountPath: /var/data
+      sizeGB: 1

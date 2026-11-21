@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1c202a"/><stop offset="1" stop-color="#090a0e"/></linearGradient>
+  <radialGradient id="glow" cx=".5" cy=".46" r=".55"><stop offset="0" stop-color="#94a3b8" stop-opacity=".42"/><stop offset="1" stop-color="#94a3b8" stop-opacity="0"/></radialGradient>
+  <pattern id="st" width="30" height="30" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="10" height="30" fill="#ffffff" fill-opacity=".035"/></pattern>
+</defs>
+<rect width="640" height="400" fill="url(#bg)"/>
+<rect width="640" height="400" fill="url(#st)"/>
+<rect width="640" height="400" fill="url(#glow)"/>
+<rect x="0" y="392" width="640" height="8" fill="#94a3b8"/>
+<g transform="translate(320 196) scale(1.18)"><g fill="none" stroke="#eef1f7" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" >
+    <circle r="68" stroke-width="22" stroke-dasharray="14 8" stroke-opacity=".9"/>
+    <circle r="50" stroke-width="3"/><circle r="36" stroke="#94a3b8" stroke-width="5"/><circle r="10" fill="#94a3b8" stroke="none"/>
+    <path d="M-36 0h72M0 -36v72" stroke="#94a3b8" stroke-width="3" stroke-opacity=".6"/></g></g>
+<rect x="30" y="30" width="6" height="26" rx="3" fill="#94a3b8"/>
+  <text x="46" y="51" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" letter-spacing="4" fill="#9aa3b5">FELGEN &amp; REIFEN</text>
+</svg>
